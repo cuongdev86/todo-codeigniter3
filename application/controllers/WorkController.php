@@ -3,6 +3,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class WorkController extends CI_Controller
 {
+    private $decryptionKey;
     public function __construct()
     {
         parent::__construct();
@@ -14,6 +15,16 @@ class WorkController extends CI_Controller
         if (!$this->user->isLoggedIn()) {
             redirect(base_url() . 'login');
         }
+        $this->decryptionKey = 'work-encrypt-image';
+        // var_dump($config);
+        // die();
+    }
+    public function datatable()
+    {
+        $data = $this->work->jsonData();
+        // var_dump($data);
+        // die();
+        echo json_encode($data);
     }
     public function index($page = 'work')
     {
@@ -21,8 +32,12 @@ class WorkController extends CI_Controller
             show_404();
         }
         $data['title'] = ucfirst('Works');
-        $works = $this->work->getList();
-        $data['content'] =  $this->load->view('work/index', ['works' => $works], TRUE); //tham số TRUE giúp content trả về dưới dạng chuỗi
+        // $q = null;
+        // if (isset($_GET['q'])) {
+        //     $q = $_GET['q'];
+        // }
+        // $works = $this->work->getList($q);
+        $data['content'] =  $this->load->view('work/index', ['decryptionKey' => $this->decryptionKey], TRUE); //tham số TRUE giúp content trả về dưới dạng chuỗi
         $this->load->view('layouts/admin', $data);
     }
     public function create($page = 'work')
@@ -48,6 +63,7 @@ class WorkController extends CI_Controller
         }
         $data['title'] = ucfirst('Edit work');
         $data['work'] = $work;
+        $data['decryptionKey'] = $this->decryptionKey;
         $data['content'] =  $this->load->view('work/edit', $data, TRUE);
         $this->load->view('layouts/admin', $data);
     }
@@ -62,5 +78,13 @@ class WorkController extends CI_Controller
         $this->work->delete($id);
         flashMessage('success', 'Work deleted successfully');
         redirect(base_url() . 'works');
+    }
+    public function deletes()
+    {
+        $ids = $this->input->get('ids');
+        if (!empty($ids)) {
+            $this->work->deletes($ids);
+        }
+        echo json_encode(['result' => true, 'message' => 'Deleted successfully']);
     }
 }

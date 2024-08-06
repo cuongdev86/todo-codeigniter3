@@ -54,11 +54,16 @@ $route['404_override'] = '';
 
 
 $route['works'] = 'WorkController';
+$route['works/datatable'] = 'WorkController/datatable';
 $route['works/create'] = 'WorkController/create';
 $route['works/store'] = 'WorkController/store';
 $route['works/edit/(:num)'] = 'WorkController/edit/$1';
 $route['works/update/(:num)'] = 'WorkController/update/$1';
 $route['works/delete/(:num)'] = 'WorkController/delete/$1';
+$route['works/deletes'] = 'WorkController/deletes';
+
+$route['works/exports'] = 'Exports/ExcelController/export_excel_works';
+$route['works/imports'] = 'Imports/ExcelController/import_excel_works';
 
 
 $route['users'] = 'UserController';
@@ -71,6 +76,14 @@ $route['users/delete/(:num)'] = 'UserController/delete/$1';
 
 $route['login'] = 'LoginController/login';
 $route['postlogin'] = 'LoginController/postLogin';
+
+
+
+$route['api/works'] = 'Api/CrudWorkController';
+$route['api/works/create'] = 'Api/CrudWorkController/create';
+$route['api/works/show/(:num)'] = 'Api/CrudWorkController/show/$1';
+$route['api/works/update/(:num)'] = 'Api/CrudWorkController/update/$1';
+$route['api/works/delete/(:num)'] = 'Api/CrudWorkController/delete/$1';
 
 
 $route['translate_uri_dashes'] = FALSE;

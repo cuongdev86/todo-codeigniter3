@@ -12,7 +12,7 @@ $segment3 = $this->uri->segment(2);
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <!-- <link rel="icon" href="favicon.ico"> -->
+
     <title><?= $title; ?></title>
     <!-- Simple bar CSS -->
     <link rel="stylesheet" href="<?= base_url(); ?>assets/admins/css/simplebar.css">
@@ -261,13 +261,13 @@ $segment3 = $this->uri->segment(2);
         });
     </script>
     <script>
-        $('#dataTable-1').DataTable({
-            autoWidth: true,
-            "lengthMenu": [
-                [16, 32, 64, -1],
-                [16, 32, 64, "All"]
-            ]
-        });
+        // $('#dataTable-1').DataTable({
+        //     autoWidth: true,
+        //     "lengthMenu": [
+        //         [16, 32, 64, -1],
+        //         [16, 32, 64, "All"]
+        //     ]
+        // });
     </script>
     <script src="<?= base_url(); ?>assets/admins/js/apps.js"></script>
 </body>

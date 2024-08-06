@@ -17,10 +17,11 @@
                                 <label for="inputDes">Description</label>
                                 <textarea name="description" id="inputDes" class="form-control" rows="5"><?= $work['description'] ?></textarea>
                             </div>
+
                             <div class="form-group mb-3">
                                 <label for="inputFile">File</label>
                                 <input type="file" name="file" id="inputFile" class="form-control-file">
-                                <img class="mt-2" style="width: 80px" src="<?= base_url() . $work['file'] ?>" alt="<?= $work['name'] ?>">
+                                <img class="mt-2" style="width: 80px" src="<?= base64DecryptImage($work['file'], $decryptionKey)  ?>" alt="<?= $work['name'] ?>">
                             </div>
 
                             <button class="btn btn-primary float-right"><i class="fe fe-save"></i> Save</button>
